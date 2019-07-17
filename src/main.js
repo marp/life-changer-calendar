@@ -1,7 +1,7 @@
+import firebase from 'firebase';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import firebase from 'firebase';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
@@ -9,24 +9,24 @@ import 'vue-material/dist/theme/default.css';
 
 Vue.config.productionTip = false;
 
+let app = '';
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAixS2iMaChQ70gQeFDecllrQ_30yvAqbk",
-  authDomain: "demonewabse.firebaseapp.com",
-  databaseURL: "https://demonewabse.firebaseio.com",
-  projectId: "demonewabse",
-  storageBucket: "",
-  messagingSenderId: "407124353038",
-  appId: "1:407124353038:web:315469cd9769b573"
+//api
 };
 
 firebase.initializeApp(firebaseConfig);
 
 Vue.use(VueMaterial);
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app');
+firebase.auth().onAuthStateChanged(() => {
+  if(!app){
+    app = new Vue({
+      router,
+      render: h => h(App),
+    }).$mount('#app');
+  }
+})
 
 Vue.material = {
   ripple: true,
