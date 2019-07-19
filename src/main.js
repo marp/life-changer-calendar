@@ -5,6 +5,7 @@ import router from './router';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
+// import 'vue-material/dist/theme/default-dark.css';
 
 
 Vue.config.productionTip = false;
@@ -12,7 +13,13 @@ Vue.config.productionTip = false;
 let app = '';
 
 const firebaseConfig = {
-//api
+  apiKey: "AIzaSyAixS2iMaChQ70gQeFDecllrQ_30yvAqbk",
+  authDomain: "demonewabse.firebaseapp.com",
+  databaseURL: "https://demonewabse.firebaseio.com",
+  projectId: "demonewabse",
+  storageBucket: "",
+  messagingSenderId: "407124353038",
+  appId: "1:407124353038:web:315469cd9769b573"
 };
 
 firebase.initializeApp(firebaseConfig);

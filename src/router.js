@@ -6,8 +6,6 @@ import SignUp from './views/SignUp.vue';
 import Dashboard from './views/Dashboard.vue';
 import firebase from 'firebase';
 
-import Account from './components/dashboard/Account.vue'
-
 Vue.use(Router);
 
 const router = new Router({
@@ -32,16 +30,13 @@ const router = new Router({
       component: SignUp,
     },
     {
-      path: '/dashboard',
+      path: '/dashboard/:component',
       name: 'dashboard',
       component: Dashboard,
       meta: {
         requiresAuth: true
       },
-      children: [{
-      	path: 'account',
-        component: Account
-      },]
+      props: true,
     },
   ],
 });
@@ -51,7 +46,7 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if(requiresAuth && !currentUser) next('login');
-  else if (!requiresAuth && currentUser) next('dashboard');
+  else if (!requiresAuth && currentUser) next('dashboard/account');
   else next();
 })
 
